@@ -4,7 +4,7 @@ We are going to practice building class components with this project. Even thoug
 
 ## Objectives
 
-- Build class components from scratch
+- Build class components from scratch 
 - Defining application state
 - Defining component state
 - Connecting state changes to components
@@ -16,7 +16,7 @@ In this project you will build an application that allows for todos to be added,
 - Use [this gif](./todo.gif) as inspiration for building the DOM.
 - Hold all todos in state within the `App.js` component. This slice of state should look like the following:
 
-  ```js
+  ```js\
   [
     {
       name: 'Organize Garage',
