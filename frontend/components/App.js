@@ -43,6 +43,7 @@ addTodo = (taskName) => {
 
 toggleCompleted = todoId => {
   this.setState({
+    ...this.state,
     todo: this.state.todos.map(task => {
       if (task.id === todoId) {
         return {
@@ -55,10 +56,16 @@ toggleCompleted = todoId => {
   })
 }
 
-clearCompleted = () => {
+clearCompleted = id => {
+  axios.delete(`${URL}/${id}`)
+  .then (res =>
   this.setState({
-    todo: this.state.todos.filter(task => !task.completed)
-  })
+    todo: this.state.todos.filter(task => {
+      return task.id !== task.completed
+      })
+    })  
+    .catch(err => console.log(err))
+  )
 }
 
 render() {
@@ -69,8 +76,10 @@ console.log(this.state);
       <div className='header'>
           <h2>Daily ToDos List</h2>
           <TodoList  todos={this.state.todos} clearCompleted={this.clearCompleted}  toggleCompleted={this.toggleCompleted}/>
+          <Form addTodo={this.addTodo}  /> 
+          <button onClick={this.clearCompleted}>Clear Completed</button>
        </div>
-      <Form addTodo={this.addTodo}  /> 
+          
       </div>
   );
 }
